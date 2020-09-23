@@ -1,2 +1,2 @@
 # discordjs-bot
-🤖 Build and deploy a discord bot with node and discord.js
+🤖 Build and Deploy a Discord bot with Node and Discord.js
