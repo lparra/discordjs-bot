@@ -20,12 +20,10 @@ client.on('message', async message => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
   
-  
   if(command === 'ping') {
     const m = await message.channel.send("Ping?");
     m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);
   }
-  
 
   if(command === 'purge') {
     const deleteCount = parseInt(args[0], 10);
@@ -47,6 +45,7 @@ client.on('message', async message => {
     const joke = await getJoke()
     message.channel.send(`${joke.setup}... ${joke.punchline}`)
   }
+  
 });
 
 client.login(config.token);
