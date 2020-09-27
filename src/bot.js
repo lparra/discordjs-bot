@@ -1,9 +1,11 @@
 // https://discord.js.org/#/
 const discord = require('discord.js');
+const { get } = require('http');
 const client = new discord.Client();
 const path = require('path');
 const filePath = path.join(__dirname, '../config.json');
 const config = require(filePath);
+const fetch = require('node-fetch');
 
 
 client.on('ready', () => {
@@ -34,6 +36,16 @@ client.on('message', async message => {
     const fetched = await message.channel.messages.fetch({limit: deleteCount});
     message.channel.bulkDelete(fetched)
       .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
+  }
+
+  if(command === 'joke') {
+    const getJoke = async () => {
+      const result = await fetch('https://official-joke-api.appspot.com/random_joke')
+      const json = await result.json()
+      return json
+    }
+    const joke = await getJoke()
+    message.channel.send(`${joke.setup}... ${joke.punchline}`)
   }
 });
 
