@@ -1,7 +1,7 @@
 // https://discord.js.org/#/
 const discord = require('discord.js');
 const client = new discord.Client();
-const { token, prefix } = require('../config.json');
+const { token, prefix } = require('./config.json');
 const fetch = require('node-fetch');
 
 
